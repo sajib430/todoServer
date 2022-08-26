@@ -32,8 +32,9 @@ router.post("/register",async(req,res,next)=>{
     try{
 
         let user_exist=await User.findOne({email:email});
+
         if(user_exist){
-            res.json({
+            return res.status(400).json({
                 success:false,
                 msg:"user already exists"
             })
@@ -114,7 +115,7 @@ router.post('/login', async(req, res, next) => {
         }
 
         jwt.sign(
-            payload, process.env.jwtUserSecret,
+            payload, process.env.jwtUserSecretg,
             {
                 expiresIn: 360000
             }, (err, token) => {
