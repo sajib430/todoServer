@@ -115,7 +115,7 @@ router.post('/login', async(req, res, next) => {
         }
 
         jwt.sign(
-            payload, process.env.jwtUserSecretg,
+            payload, process.env.jwtUserSecret,
             {
                 expiresIn: 360000
             }, (err, token) => {
