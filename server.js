@@ -17,7 +17,8 @@ dotenv.config({
 
 connectBD()
 
-app.use("/api/todo/auth",require("./routes/user"))
+app.use("/api/todo/auth",require("./routes/user"));
+app.use("/api/todo",require("./routes/todo"));
 
 
 const PORT=process.env.PORT || 3000
