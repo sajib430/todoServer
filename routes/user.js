@@ -26,6 +26,38 @@ router.get("/",user_jwt,async (req,res,next)=>{
     }
 })
 
+
+
+router.put('/',user_jwt, async (req, res, next) => {
+    try {
+        let toDoU = await User.findById(req.user.id);
+        if(!toDoU) {
+            return res.status(400).json({ success: false, msg: 'Author does not exits'});
+        }
+
+        toDoU=await User.findByIdAndUpdate(req.user.id,req.body,{
+            new:true,
+            runValidators:true
+        })
+
+        // toDo = await Todo.findByIdAndUpdate(req.params.id, req.body, {
+        //     new: true,
+        //     runValidators: true
+        // });
+
+        res.status(200).json({ success: true,User: toDoU, msg: 'Successfully updated' });
+        
+    } catch (error) {
+        next(error);
+    }
+
+});
+
+
+
+
+
+
 router.post("/register",async(req,res,next)=>{
     const {username,email,password}=req.body;
 
