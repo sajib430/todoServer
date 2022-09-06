@@ -100,8 +100,9 @@ router.post("/register",async(req,res,next)=>{
         const salt=await bcrypt.genSalt(10);
         user.password=await bcrypt.hash(password,salt);
 
-        let size =200;
-        user.avatar='https://gravatar.com/avatar/?s='+size+'&d=retro';
+        //let size =200;
+        // user.avatar='https://gravatar.com/avatar/?s='+size+'&d=retro';
+        user.avatar="";
 
         await user.save();
 
