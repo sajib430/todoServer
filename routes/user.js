@@ -7,24 +7,24 @@ const jwt = require('jsonwebtoken');
 
 const User=require("../models/User")
 
-// router.get("/",user_jwt,async (req,res,next)=>{
-//     try{
+router.get("/own",user_jwt,async (req,res,next)=>{
+    try{
 
-//         const user=await User.findById(req.user.id).select('-password');
-//         res.status(200).json({
-//             success:true,
-//             user:user
-//         })
+        const user=await User.findById(req.user.id).select('-password');
+        res.status(200).json({
+            success:true,
+            user:user
+        })
 
-//     }catch(error){
-//         console.log(error.message);
-//         res.status(500).json({
-//             success:false,
-//             msg:"Server err"
-//         })
-//         next();
-//     }
-// })
+    }catch(error){
+        console.log(error.message);
+        res.status(500).json({
+            success:false,
+            msg:"Server err"
+        })
+        next();
+    }
+})
 
 
 router.get("/",async (req,res,next)=>{
